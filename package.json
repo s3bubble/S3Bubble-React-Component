@@ -1,6 +1,6 @@
 {
   "name": "@s3bubble/s3player-react-component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "S3Player react component",
   "main": "./build/index.js",
   "scripts": {
