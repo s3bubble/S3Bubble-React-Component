@@ -1,6 +1,6 @@
 {
   "name": "@s3bubble/s3player-react-component",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "S3Player react component",
   "main": "./build/index.js",
   "scripts": {
@@ -42,5 +42,8 @@
     "webpack-cli": "^3.3.10"
   },
   "author": "S3Bubble",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react-helmet": "^6.1.0"
+  }
 }

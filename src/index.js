@@ -1,32 +1,61 @@
-import React, { useEffect } from 'react';
-const S3Player = (props) => {
+import React, { Component } from 'react';
+import Helmet from "react-helmet";
+export default class S3Player extends Component {
 
-    const uniqueId = Date.now();
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: ''
+        }
+        this.handleScriptInject = this.handleScriptInject.bind(this);
+    }
 
-    useEffect(() => {
-
-        const link = document.createElement("link");
-        link.href = "https://unpkg.com/@s3bubble/player@latest/dist/css/s3bubble.min.css";
-        link.type = "text/css";
-        link.rel = "stylesheet";
-        link.media = "screen,print";
-        document.body.appendChild(link);
-
-        const script = document.createElement("script");
-        script.src = "https://unpkg.com/@s3bubble/player@latest/dist/js/s3bubble.min.js";
-        script.async = true;
-        document.body.appendChild(script);
-
-        if (props.setup.drm) {
-            // eslint-disable-next-line no-undef
-            s3bubble(`s3media-${uniqueId}`).drm(props.setup);
-        } else {
-            // eslint-disable-next-line no-undef
-            s3bubble(`s3media-${uniqueId}`).media(props.setup);
+    componentDidMount() {
+        this.setState({
+            id: "id" + Math.random().toString(16).slice(2)
+        });
+        const existingScript = document.getElementById('s3playerCss');
+        if (!existingScript) {
+            const link = document.createElement("link");
+            link.href = "https://unpkg.com/@s3bubble/player@latest/dist/css/s3bubble.min.css";
+            link.type = "text/css";
+            link.rel = "stylesheet";
+            link.id = "s3playerCss";
+            link.media = "screen,print";
+            document.head.appendChild(link);
         }
 
-    }, [props.setup, uniqueId]);
+    }
 
-    return (<div id={`s3media-${uniqueId}`} className='s3media'></div>);
+    handleScriptInject({ scriptTags }) {
+        if (scriptTags) {
+            const scriptTag = scriptTags[0];
+            scriptTag.onload = () => {
+                this.setState({
+                    myExternalLib: window.myExternalLib
+                });
+                if (this.props.setup.drm) {
+                    // eslint-disable-next-line no-undef
+                    s3bubble(`s3media-${this.state.id}`).drm(this.props.setup);
+                } else {
+                    // eslint-disable-next-line no-undef
+                    s3bubble(`s3media-${this.state.id}`).media(this.props.setup);
+                }
+            };
+        }
+    }
+
+    render() {
+        return (<div>
+            <Helmet
+                script={[{ src: "https://unpkg.com/@s3bubble/player@latest/dist/js/s3bubble.min.js" }]}
+                onChangeClientState={(newState, addedTags) => this.handleScriptInject(addedTags)}
+            />
+            <div>
+                {this.state.myExternalLib !== null
+                    ? <div id={`s3media-${this.state.id}`} className='s3media'></div>
+                    : "loading..."}
+            </div>
+        </div>);
+    }
 }
-export default S3Player;
