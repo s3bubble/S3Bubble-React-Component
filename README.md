@@ -11,6 +11,27 @@
 ```
 npm install @s3bubble/s3player-react-component
 ```
+
+## Basic Example
+```js
+import './App.css';
+import S3Player from "@s3bubble/s3player-react-component";
+
+function App() {
+    return (<>
+        <S3Player setup={
+            {
+                code: "<code>",
+                type: "video"
+            }
+        } />
+    </>
+    );
+}
+
+export default App;
+```
+
 ## DRM Example
 ```js
 import './App.css';
