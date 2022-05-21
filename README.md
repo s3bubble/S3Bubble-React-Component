@@ -6,7 +6,7 @@
 
 ![S3Bubble Audio Player](https://s3b-assets-bucket.s3.amazonaws.com/audio-player.png)
 
-![View Docs Here For More Information](https://www.npmjs.com/package/@s3bubble/player)
+[View Docs Here For More Information](https://www.npmjs.com/package/@s3bubble/player)
 
 ```
 npm install @s3bubble/s3player-react-component
