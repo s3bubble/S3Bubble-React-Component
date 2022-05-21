@@ -1,0 +1,46 @@
+{
+  "name": "@s3bubble/s3player-react-component",
+  "version": "1.0.1",
+  "description": "S3Player react component",
+  "main": "./build/index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "video",
+    "audio",
+    "player",
+    "drm",
+    "dash",
+    "hls",
+    "EZDRM",
+    "BuyDRM",
+    "Keyos",
+    "Widevine",
+    "Playready",
+    "Fairplay",
+    "Chromecast",
+    "AirPlay",
+    "DRM",
+    "AWS",
+    "SSAI",
+    "CSAI",
+    "Media",
+    "Video",
+    "Player"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.3.0",
+    "style-loader": "^1.0.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "author": "S3Bubble",
+  "license": "ISC"
+}
